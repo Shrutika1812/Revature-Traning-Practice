@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>HTML Assesment</h2>
+    <form id="quizForm">
+        <!-- Question 1 -->
+        <label for="q1">1. What does HTML stand for?</label>
+        <select id="q1" name="q1">
+            <option value="">--Select--</option>
+            <option value="Hyper Text Markup Language">Hyper Text Markup Language</option>
+            <option value="Hyperlinks and Text Markup Language">Hyperlinks and Text Markup Language</option>
+            <option value="Home Page Text Markup">Home Page Text Markup</option>
+            <option value="Hyper Tool Markup Language">Hyper Tool Markup Language</option>
+        </select>
+
+        <!-- Question 2 -->
+        <label for="q2">2. Which tag is used to create a hyperlink?</label>
+        <select id="q2" name="q2">
+            <option value="">--Select--</option>
+            <option value="a">&lt;a&gt;</option>
+            <option value="link">&lt;link&gt;</option>
+            <option value="href">href</option>
+            <option value="url">&lt;url&gt;</option>
+        </select>
+
+        <!-- Question 3 -->
+        <label for="q3">3. Which tag is used to create a table row?</label>
+        <select id="q3" name="q3">
+            <option value="">--Select--</option>
+            <option value="tr">&lt;tr&gt;</option>
+            <option value="td">&lt;td&gt;</option>
+            <option value="table">&lt;table&gt;</option>
+            <option value="row">&lt;row&gt;</option>
+        </select>
+
+        <!-- Question 4 -->
+        <label for="q4">4. Which attribute is used to specify an image source?</label>
+        <select id="q4" name="q4">
+            <option value="">--Select--</option>
+            <option value="src">src</option>
+            <option value="href">href</option>
+            <option value="alt">alt</option>
+            <option value="link">link</option>
+        </select>
+
+        <!-- Question 5 -->
+        <label for="q5">5. Which tag is used for the largest heading?</label>
+        <select id="q5" name="q5">
+            <option value="">--Select--</option>
+            <option value="h1">&lt;h1&gt;</option>
+            <option value="h2">&lt;h2&gt;</option>
+            <option value="h6">&lt;h6&gt;</option>
+            <option value="heading">&lt;heading&gt;</option>
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    const form = document.getElementById('quizForm');
+    const resultDiv = document.getElementById('result');
+
+    const answers = {
+        q1: "Hyper Text Markup Language",
+        q2: "a",
+        q3: "tr",
+        q4: "src",
+        q5: "h1"
+    };
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let score = 0;
+        for (let i = 1; i <= 5; i++) {
+            const userAnswer = form['q'+i].value;
+            if (userAnswer === answers['q'+i]) {
+                score++;
+            }
+        }
+        resultDiv.textContent = `Your score is ${score} out of 5`;
+    });
+</script>
+
+</body>
+</html>
