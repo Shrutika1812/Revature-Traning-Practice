@@ -1,0 +1,51 @@
+<!--
+12. Callback Hell – Payment Processing
+
+A payment flow involves:
+Validate user
+Process payment
+Generate invoice
+ Explain why nested callbacks become difficult to manage.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Callback Hell Example</title>
+</head>
+<body>
+
+<h2>Callback Hell Example</h2>
+<p>Check console for output</p>
+
+<script>
+    function validateUser(callback) {
+        setTimeout(() => {
+            console.log("User validated");
+            callback();
+        }, 1000);
+    }
+
+    function processPayment(callback) {
+        setTimeout(() => {
+            console.log("Payment processed");
+            callback();
+        }, 1000);
+    }
+
+    function generateInvoice() {
+        setTimeout(() => {
+            console.log("Invoice generated");
+        }, 1000);
+    }
+
+    // Nested callbacks (Callback Hell)
+    validateUser(function () {
+        processPayment(function () {
+            generateInvoice();
+        });
+    });
+</script>
+
+</body>
+</html>

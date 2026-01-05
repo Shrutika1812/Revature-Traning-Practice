@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Practice Website</title>
+</head>
+<body>
+
+<h1>JavaScript Practice Website</h1>
+
+<!-- 1 & 2. Call Stack & Callback Queue -->
+<h2>1 & 2. Call Stack & Callback Queue</h2>
+<button onclick="callStackDemo()">Run Example</button>
+<p id="eventOutput"></p>
+<p id="adOutput"></p>
+
+<!-- 3 & 4. JSON -->
+<h2>3 & 4. JSON.parse & JSON.stringify</h2>
+<button onclick="jsonDemo()">Show Product & Store User</button>
+<p id="jsonOutput"></p>
+
+<!-- 5,6,7. Array Methods -->
+<h2>5–7. Array Methods (forEach, map, filter)</h2>
+<button onclick="arrayDemo()">Show Arrays</button>
+<ul id="userList"></ul>
+<ul id="priceList"></ul>
+<ul id="productList"></ul>
+
+<!-- 8. reduce Cart Total -->
+<h2>8. Cart Total (reduce)</h2>
+<button onclick="calculateTotal()">Calculate Cart Total</button>
+<p id="cartTotal"></p>
+
+<!-- 9. Function vs Arrow -->
+<h2>9. Function Declaration vs Arrow</h2>
+<p id="gstOutput"></p>
+
+<!-- 10. Closure -->
+<h2>10. Secure Counter (Closure)</h2>
+<button onclick="increaseCounter()">Increase Counter</button>
+<p id="counterOutput"></p>
+
+<!-- 11. Callback Function -->
+<h2>11. Login Validation (Callback)</h2>
+<button onclick="login()">Login</button>
+<p id="loginOutput"></p>
+
+<!-- 12. Callback Hell Explanation -->
+<h2>12. Callback Hell</h2>
+<p>Nested callbacks are hard to read, debug, and maintain. This is called callback hell.</p>
+
+<!-- 13. Promises & async/await -->
+<h2>13. async / await</h2>
+<button onclick="loadData()">Load Data</button>
+<p id="apiOutput"></p>
+
+<!-- 14. DOM Manipulation -->
+<h2>14. DOM Manipulation</h2>
+<button onclick="addItem()">Add Item</button>
+<ul id="dynamicList"></ul>
+
+<!-- 15. Event Listener / Form Validation -->
+<h2>15. Form Validation (Event Listener)</h2>
+<form id="myForm">
+    <input type="text" id="nameInput" placeholder="Enter name">
+    <button type="submit">Submit</button>
+    <p id="errorMsg"></p>
+</form>
+
+<script>
+    // 1 & 2. Call Stack & Event Loop
+    function callStackDemo() {
+        document.getElementById("eventOutput").textContent = "Start";
+        setTimeout(() => {
+            document.getElementById("eventOutput").textContent += " → Async Task";
+        }, 0);
+        document.getElementById("eventOutput").textContent += " → End";
+
+        setTimeout(() => {
+            document.getElementById("adOutput").textContent = "Advertisement Loaded";
+        }, 0);
+    }
+
+    // 3 & 4. JSON
+    function jsonDemo() {
+        let response = '{"id":101,"name":"Laptop","price":50000}';
+        let obj = JSON.parse(response);
+
+        let user = { username: "admin", role: "manager" };
+        localStorage.setItem("user", JSON.stringify(user));
+
+        document.getElementById("jsonOutput").textContent = 
+            "Product: " + obj.name + ", User stored in localStorage";
+    }
+
+    // 5,6,7 Array Methods
+    const users = ["Shrutika", "Amit", "Neha"];
+    const products = [
+        { name: "Laptop", price: 50000, inStock: true },
+        { name: "Mouse", price: 2000, inStock: false },
+        { name: "Keyboard", price: 3000, inStock: true }
+    ];
+
+    function arrayDemo() {
+        // forEach
+        const userList = document.getElementById("userList");
+        userList.innerHTML = "";
+        users.forEach(u => {
+            const li = document.createElement("li");
+            li.textContent = "Welcome " + u;
+            userList.appendChild(li);
+        });
+
+        // map – discounted prices
+        const priceList = document.getElementById("priceList");
+        priceList.innerHTML = "";
+        products.map(p => p.price * 0.9).forEach(p => {
+            const li = document.createElement("li");
+            li.textContent = "Discounted Price: ₹" + p;
+            priceList.appendChild(li);
+        });
+
+        // filter – in-stock
+        const productList = document.getElementById("productList");
+        productList.innerHTML = "";
+        products.filter(p => p.inStock).forEach(p => {
+            const li = document.createElement("li");
+            li.textContent = p.name;
+            productList.appendChild(li);
+        });
+    }
+
+    // 8. reduce – cart total
+    function calculateTotal() {
+        const total = products.reduce((sum, item) => sum + item.price, 0);
+        document.getElementById("cartTotal").textContent = "Total: ₹" + total;
+    }
+
+    // 9. Function vs Arrow
+    function gst(price) { return price * 0.18; }
+    const gstArrow = price => price * 0.18;
+    document.getElementById("gstOutput").textContent = 
+        "GST Function: ₹" + gst(1000) + ", GST Arrow: ₹" + gstArrow(1000);
+
+    // 10. Closure
+    const counter = (function() {
+        let count = 0;
+        return function() { count++; return count; }
+    })();
+    function increaseCounter() {
+        document.getElementById("counterOutput").textContent = counter();
+    }
+
+    // 11. Callback
+    function validateUser(callback) { callback(); }
+    function login() {
+        validateUser(() => {
+            document.getElementById("loginOutput").textContent = "Login successful";
+        });
+    }
+
+    // 13. async / await
+    async function loadData() {
+        let res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        let data = await res.json();
+        document.getElementById("apiOutput").textContent = "Data Loaded: " + data.title;
+    }
+
+    // 14. DOM Manipulation
+    function addItem() {
+        const li = document.createElement("li");
+        li.textContent = "New Item";
+        document.getElementById("dynamicList").appendChild(li);
+    }
+
+    // 15. Event Listener / Form Validation
+    document.getElementById("myForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        const name = document.getElementById("nameInput").value;
+        if(name === "") {
+            document.getElementById("errorMsg").textContent = "Name is required";
+        } else {
+            document.getElementById("errorMsg").textContent = "";
+            alert("Form submitted: " + name);
+        }
+    });
+</script>
+
+</body>
+</html>

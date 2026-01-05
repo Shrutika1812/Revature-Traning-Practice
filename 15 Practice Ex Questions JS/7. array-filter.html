@@ -1,0 +1,47 @@
+<!--
+7. Array filter – Search Feature
+You want to show only available products from a product list.
+ Use filter() to return items with inStock === true.
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Filter - In-Stock Products</title>
+</head>
+<body>
+    <h2>Available Products</h2>
+    <ul id="productList"></ul>
+
+    <script>
+        // Array of products
+        const products = [
+            { name: "Laptop", price: 50000, inStock: true },
+            { name: "Mouse", price: 500, inStock: false },
+            { name: "Keyboard", price: 1000, inStock: true },
+            { name: "Monitor", price: 8000, inStock: true },
+            { name: "Headphones", price: 1500, inStock: false }
+        ];
+
+        // Filter only in-stock products
+        const availableProducts = products.filter(product => product.inStock);
+
+        // Select ul element to display
+        const productList = document.getElementById("productList");
+
+        // Display filtered products
+        availableProducts.forEach(product => {
+            const li = document.createElement("li");
+            li.textContent = `${product.name} - ₹${product.price}`;
+            productList.appendChild(li);
+
+            // Also log in console
+            console.log(`Available: ${product.name}, Price: ${product.price}`);
+        });
+    </script>
+</body>
+</html>

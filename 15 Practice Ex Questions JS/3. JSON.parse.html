@@ -1,0 +1,33 @@
+<!--
+3. JSON.parse()
+You receive this API response as a string:
+'{"id":101,"name":"Laptop","price":50000}'
+ Convert it into a JavaScript object and access the name.
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON.parse Example</title>
+</head>
+<body>
+
+<h2>JSON.parse Example</h2>
+<p id="result"></p>
+
+<script>
+    // API response in string format
+    let apiResponse = '{"id":101,"name":"Laptop","price":50000}';
+
+    // Convert JSON string to JavaScript object
+    let product = JSON.parse(apiResponse);
+
+    // Access the name property
+    document.getElementById("result").textContent = product.name;
+</script>
+
+</body>
+</html>
+

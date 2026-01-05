@@ -1,0 +1,43 @@
+<!--
+11. Callback Function – Login Validation
+
+You validate a user and then redirect them.
+ Implement validation using callback functions.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callback Login Validation</title>
+</head>
+<body>
+
+<h2>Login Validation Using Callback</h2>
+
+<button onclick="login()">Login</button>
+<p id="message"></p>
+
+<script>
+    // Validation function with callback
+    function validateUser(callback) {
+        let isValid = true; // assume user is valid
+
+        if (isValid) {
+            callback(); // redirect after validation
+        }
+    }
+
+    // Redirect function
+    function redirectUser() {
+        document.getElementById("message").textContent =
+            "Login successful. Redirecting...";
+    }
+
+    function login() {
+        validateUser(redirectUser);
+    }
+</script>
+
+</body>
+</html>

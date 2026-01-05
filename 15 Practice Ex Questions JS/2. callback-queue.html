@@ -1,0 +1,32 @@
+<!--
+2. Callback Queue
+
+You are loading ads after page load using setTimeout.
+ Why does the ad load after the main content even if the timeout is 0ms?
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callback Queue Example</title>
+</head>
+<body>
+
+<h3>Main Content</h3>
+<p>This is the main page content.</p>
+
+<div id="ad"></div>
+
+<script>
+console.log("Page content loaded");
+
+setTimeout(function () {
+    document.getElementById("ad").innerText = "Advertisement Loaded";
+    console.log("Ad Loaded");
+}, 0);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!--
+1. Call Stack & Event Loop
+
+A web page has a button that logs "Start", then uses setTimeout to log "Async Task", and finally logs "End".
+ Explain the execution order using Call Stack, Callback Queue, and Event Loop.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Call Stack and Event Loop</title>
+</head>
+<body>
+
+<h3>Call Stack & Event Loop Demo</h3>
+
+<button id="btn">Click Button</button>
+
+<script>
+document.getElementById("btn").addEventListener("click", function () {
+
+    console.log("Start");
+
+    setTimeout(function () {
+        console.log("Async Task");
+    }, 1000);
+
+    console.log("End");
+
+});
+</script>
+
+</body>
+</html>

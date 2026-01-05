@@ -1,0 +1,41 @@
+<!--
+6. Array map – Price Calculation
+An e-commerce site gives 10% discount on all prices.
+ Use map() to create a new discounted price list.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Map - Discount Example</title>
+</head>
+<body>
+    <h2>Original Prices and Discounted Prices</h2>
+    <ul id="priceList"></ul>
+
+    <script>
+        // Original product prices
+        const prices = [990, 1500, 800, 750, 600];
+
+        // Calculate discounted prices (10% off)
+        const discountedPrices = prices.map(price => {
+            return price - price * 0.10; // 10% discount
+        });
+
+        // Select ul element to display
+        const priceList = document.getElementById("priceList");
+
+        // Show original and discounted prices
+        prices.forEach((price, index) => {
+            const li = document.createElement("li");
+            li.textContent = `Original: ₹${price} → Discounted: ₹${discountedPrices[index]}`;
+            priceList.appendChild(li);
+
+            // Also log in console
+            console.log(`Original: ${price}, Discounted: ${discountedPrices[index]}`);
+        });
+    </script>
+</body>
+</html>
